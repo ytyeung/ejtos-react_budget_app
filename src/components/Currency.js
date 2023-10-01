@@ -5,10 +5,11 @@ import Select from "react-select";
 const Currency = () => {
   const {dispatch} = useContext(AppContext);
 
-    const changeCurrency = (val)=>{
+    const changeCurrency = (event)=>{
+            event.label="Currency ("+event.label+")";
             dispatch({
                 type: 'CHG_CURRENCY',
-                payload: val,
+                payload: event.value,
             })
     }
 
@@ -38,10 +39,10 @@ const Currency = () => {
 
   return (
     <div class="alert" style={{backgroundColor: "#a5e1a0"}}>
-        <Select defaultValue={{ label: "£ Pound", value: "£" }} 
+        <Select defaultValue={{ label: "Currency (£ Pound)", value: "£" }} 
         options={options} 
         name='Currency'id="currency" 
-        onChange={(event)=>changeCurrency(event.value)} 
+        onChange={(event)=>(changeCurrency(event))} 
         styles={customStyles} autoFocus={true}/>  
     </div>
 
