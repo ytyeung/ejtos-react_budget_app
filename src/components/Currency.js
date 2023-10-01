@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
+import Select from "react-select";
 
 const Currency = () => {
   const {dispatch} = useContext(AppContext);
@@ -10,15 +11,39 @@ const Currency = () => {
                 payload: val,
             })
     }
+
+    const options = [
+        { value: "£", label: "£ Pound" },
+        { value: "$", label: "$ Dollar" },
+        { value: "€", label: "€ Euro" },
+        { value: "₹", label: "₹ Rupee" },
+      ];
+      const customStyles = {
+        option: (defaultStyles, state) => ({
+          ...defaultStyles,
+          color: "#000000",
+          backgroundColor: state.isFocused ? "#ffffff" : "#a5e1a0",
+        }),
+    
+        control: (defaultStyles) => ({
+          ...defaultStyles,
+          backgroundColor: "#a5e1a0",
+          color: "#ffffff",
+          border: "none",
+          boxShadow: "none",
+        }),
+        singleValue: (defaultStyles) => ({ ...defaultStyles, color: "#fff" }),
+      };
     
 
   return (
-      <select name="Currency" style={{backgroundColor: "lightblue"}} styleid="Currency" onChange={event=>changeCurrency(event.target.value)}>
-        <option value="$">$ Dollar</option>
-        <option value="£">£ pound</option>
-        <option value="€">€ Euro</option>
-        <option value="₹">₹ Ruppee</option>
-      </select>	
+    <div class="alert" style={{backgroundColor: "#a5e1a0"}}>
+        <Select defaultValue={{ label: "£ Pound", value: "£" }} 
+        options={options} 
+        name='Currency'id="currency" 
+        onChange={(event)=>changeCurrency(event.value)} 
+        styles={customStyles} autoFocus={true}/>  
+    </div>
 
     );
 };
