@@ -38,7 +38,7 @@ const Currency = () => {
     
 
   return (
-    <div class="alert" style={{backgroundColor: "#a5e1a0"}}>
+    <div class="alert" style={{backgroundColor: "#a5e1a0", height: "75px"}}>
         <Select defaultValue={{ label: "Currency (£ Pound)", value: "£" }} 
         options={options} 
         name='Currency'id="currency" 
